@@ -3,6 +3,7 @@ package com.example.myfirst.dao;
 import com.example.myfirst.model.Person;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface PersonDAO {
@@ -14,4 +15,5 @@ public interface PersonDAO {
 
     }
     List<Person> getAllPeople();
+   Optional<Person> getSinglePersonById(UUID id);
 }

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RequestMapping("api/v1/person")
 @RestController
@@ -27,4 +29,9 @@ public class PersonController {
     public List<Person> getAllPeople(){
         return  personService.getAllPerson();
     }
+    @GetMapping(path = "{id}")
+    public Optional<Person> getSinglePersonByID(@PathVariable("id") UUID id){
+        return Optional.ofNullable(personService.getSinglePersonByID(id));
+    }
+
 }
