@@ -1,6 +1,7 @@
 package com.example.myfirst.service;
 
 import com.example.myfirst.dao.PersonDAO;
+import com.example.myfirst.dao.PersonRepository;
 import com.example.myfirst.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,6 +17,8 @@ import java.util.UUID;
 public class PersonService {
     PersonDAO personDAO;
 
+    @Autowired PersonRepository personRepository;
+
     @Autowired
     public PersonService(@Qualifier("fakeDAO") PersonDAO personDAO) {
         this.personDAO = personDAO;
@@ -27,11 +30,23 @@ public class PersonService {
 
     }
     public List<Person> getAllPerson(){
-        return personDAO.getAllPeople();
+        return  personRepository.findAll();
     }
 
 
-    public Person getSinglePersonByID(UUID id){
-        return  personDAO.getSinglePersonById(id).orElse(null);
+    public Optional<Person> getSinglePersonByID(String id){
+        Long personId=Long.parseLong(id);
+        Optional<Person> person= personRepository.findById(personId);
+        return  person;
+    }
+
+    public Optional<Person> updatePerson(String id, Person person) {
+       Person person1= personRepository.findById(Long.parseLong(id)).orElse(null);
+        person1.setFirstName(person.getFirstName());
+        personRepository.save(person1);
+        return  Optional.of(person1);
+    }
+    public  void deletePerson(String id){
+        personRepository.deleteById(Long.parseLong(id));
     }
 }

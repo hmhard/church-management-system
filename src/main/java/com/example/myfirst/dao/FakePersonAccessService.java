@@ -11,11 +11,16 @@ import java.util.UUID;
 @Repository("fakeDAO")
 public class FakePersonAccessService implements PersonDAO{
     List<Person> DB= new ArrayList<>();
-    @Override
-    public int insertPerson(UUID id, Person person) {
+
+    public int insertPerson(Long id, Person person) {
         DB.add(new Person(id,person.getFirstName()));
         return 1;
 
+    }
+
+    @Override
+    public int insertPerson(UUID id, Person person) {
+        return 0;
     }
 
     @Override
@@ -25,8 +30,7 @@ public class FakePersonAccessService implements PersonDAO{
 
     @Override
     public Optional<Person> getSinglePersonById(UUID id) {
-        return DB.stream().
-                filter(person -> person.getId().equals(id)).findFirst();
+        return Optional.empty();
     }
 
 

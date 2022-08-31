@@ -1,5 +1,6 @@
 package com.example.myfirst.api;
 
+import com.example.myfirst.dao.PersonRepository;
 import com.example.myfirst.model.Person;
 import com.example.myfirst.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import java.util.UUID;
 public class PersonController {
 
 
+    @Autowired
+    PersonRepository personRepository;
     PersonService personService;
 
     @Autowired
@@ -23,15 +26,25 @@ public class PersonController {
 
     @PostMapping
     public  void addPerson(@RequestBody Person person){
-        personService.addPerson(person);
+        personRepository.save(person);
     }
     @GetMapping
     public List<Person> getAllPeople(){
-        return  personService.getAllPerson();
+       return  personService.getAllPerson();
     }
-    @GetMapping(path = "{id}")
-    public Optional<Person> getSinglePersonByID(@PathVariable("id") UUID id){
-        return Optional.ofNullable(personService.getSinglePersonByID(id));
+    @GetMapping("{id}")
+    public Optional<Person> show(@PathVariable String id){
+      return  personService.getSinglePersonByID(id);
+    }
+    @PutMapping("{id}")
+    public Optional<Person> update(@PathVariable String id,Person person){
+        return  personService.updatePerson(id,person);
+    }
+
+    @DeleteMapping("{id}")
+    public  String delete(@PathVariable String id){
+        personService.deletePerson(id);
+        return  "deleted successfully";
     }
 
 }
