@@ -1,17 +1,14 @@
 package com.example.myfirst.service;
 
-import com.example.myfirst.dao.PersonDAO;
-import com.example.myfirst.dao.PersonRepository;
+import com.example.myfirst.repository.PersonDAO;
+import com.example.myfirst.repository.PersonRepository;
 import com.example.myfirst.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class PersonService {

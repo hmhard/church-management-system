@@ -2,9 +2,7 @@ package com.example.myfirst.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -12,25 +10,29 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
+@Setter
+@Getter
 @Table(name = "member")
-public class Member {
+public class Member extends  BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 
-    @NotNull
+@Column(length = 100,nullable = false)
     public  String firstName;
 
-
+    @Column(length = 100)
+    @NotNull
     public  String middleName;
 
 
-
+    @Column(length = 100)
     public  String lastName;
 
-
+    @Column(length = 10)
     public  String gender;
 
 
@@ -38,10 +40,15 @@ public class Member {
 
 
 
-    public  int father;
+    @ManyToOne
+    @JoinColumn(name="father_id", nullable=true)
+    public Member  father;
+
+    @ManyToOne
+    @JoinColumn(name="mother_id", nullable=true)
+    public  Member mother;
 
 
-    public  int mother;
     public  Date registeredAt;
 
 

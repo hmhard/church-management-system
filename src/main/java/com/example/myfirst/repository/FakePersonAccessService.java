@@ -1,4 +1,4 @@
-package com.example.myfirst.dao;
+package com.example.myfirst.repository;
 
 import com.example.myfirst.model.Person;
 import org.springframework.stereotype.Repository;
