@@ -21,7 +21,7 @@ public class MemberController {
        return memberService.getAll();
     }
     @PostMapping
-    public  Optional<Member> add(@RequestBody Map<String, String> body){
+    public  Optional<Member> add(@RequestBody Member body){
         return memberService.addMember(body);
 
     }
