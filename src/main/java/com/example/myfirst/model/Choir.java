@@ -1,16 +1,16 @@
 package com.example.myfirst.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Builder
 @Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Choir {
@@ -20,5 +20,8 @@ public class Choir {
     private Long id;
 
     @Column(length = 200)
-    String name;
+   private String name;
+
+    @Column(name = "registered_at")
+    private Date registeredAt;
 }
