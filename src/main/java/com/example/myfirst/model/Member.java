@@ -1,11 +1,12 @@
 package com.example.myfirst.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
 import lombok.*;
 
+
 import javax.persistence.*;
 import java.util.Date;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,12 +15,11 @@ import java.util.Date;
 @Setter
 @Getter
 @Table(name = "member")
-public class Member extends  BaseEntity {
+public class Member  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
 @Column(length = 100,nullable = false)
     public  String firstName;
