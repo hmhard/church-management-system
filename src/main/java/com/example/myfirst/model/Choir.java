@@ -4,16 +4,15 @@ package com.example.myfirst.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Builder
 @Data
-@Setter
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Choir {
+public class Choir implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
